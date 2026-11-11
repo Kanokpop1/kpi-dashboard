@@ -10,7 +10,7 @@ header{position:sticky;top:0;z-index:20;background:linear-gradient(120deg,#0b2a3
 header h1{margin:0;font-size:19px;font-weight:700;letter-spacing:.2px}header p{margin:2px 0 0;font-size:12px;opacity:.75}
 .sp{flex:1}.btn{font:inherit;font-weight:600;border:0;border-radius:10px;padding:10px 16px;cursor:pointer;display:inline-flex;gap:8px;align-items:center;transition:transform .15s,box-shadow .15s}
 .btn:hover{transform:translateY(-1px)}.btn:focus-visible,select:focus-visible,.seg button:focus-visible,.tab:focus-visible{outline:3px solid #ffd08a;outline-offset:2px}
-.b1{background:#ffffff1f;color:#fff;border:1px solid #ffffff55}.b2{background:#f6a444;color:#2b1700}.b2.pulse{animation:pl 1.6s infinite}
+.b1{background:transparent;color:#d6e6e9;border:1px solid #ffffff38;font-weight:500;padding:8px 14px}.b1:hover{background:#ffffff14;color:#fff}.b2{background:#f6a444;color:#2b1700}.b2.pulse{animation:pl 1.6s infinite}
 @keyframes pl{0%{box-shadow:0 0 0 0 #f6a444aa}70%{box-shadow:0 0 0 10px #f6a44400}100%{box-shadow:0 0 0 0 #f6a44400}}
 #dirty{display:none;background:#fff3dc;color:#7a4a00;border-radius:20px;padding:5px 12px;font-size:12px;font-weight:600}
 main{max-width:1280px;margin:0 auto;padding:22px 28px 60px}
@@ -59,7 +59,7 @@ body.drag::after{content:'วางไฟล์ Excel เพื่ออัป�
 
 /* ---- ปรับโฉมหน้าแรก ---- */
 body{background:#eef3f3 linear-gradient(#e2ecec,#eef3f3) no-repeat;background-size:100% 320px;font-variant-numeric:tabular-nums}
-header{background:#0b2a35;overflow:hidden;padding-bottom:20px}
+header{background:#0b2a35;padding-bottom:20px}
 header::after{content:'';position:absolute;left:0;right:0;bottom:0;height:26px;z-index:-1;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='26' viewBox='0 0 240 26'%3E%3Cpath d='M0 14c30 0 30-9 60-9s30 9 60 9 30-9 60-9 30 9 60 9v12H0z' fill='%231b7f93' fill-opacity='.55'/%3E%3Cpath d='M0 19c30 0 30-6 60-6s30 6 60 6 30-6 60-6 30 6 60 6v7H0z' fill='%230e9aa7'/%3E%3C/svg%3E") repeat-x bottom}
 .logo{background:var(--bst);border-radius:50%}
 .hero{background:#0b2a35;color:#fff;border-radius:18px;padding:24px 26px;margin-bottom:18px;display:grid;grid-template-columns:minmax(220px,.9fr) minmax(0,1.7fr) minmax(220px,1fr);gap:28px;align-items:start;-webkit-print-color-adjust:exact;print-color-adjust:exact}
@@ -108,17 +108,48 @@ header::after{content:'';position:absolute;left:0;right:0;bottom:0;height:26px;z
 .wi .pc{margin-left:4px;font-size:11.5px;padding:1px 8px}
 .kpi.card{background:var(--ct);border-left-color:var(--cd)}.kt{gap:10px}
 #pl button[data-v=BLG].on{background:#0a7480}#pl button[data-v=BST].on{background:#b4590a}
+/* ---- สรุปผลรายโรง (ข้อ 1) ---- */
+.hs h3{margin-bottom:4px}
+.ps{border-left:4px solid var(--cd);background:#ffffff0d;border-radius:10px;padding:10px 14px 12px;margin-top:10px}
+.p-BLG.ps{--cd:#14a3b0}.p-BST.ps{--cd:#e8862a}
+.pst{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.pst .pc{font-size:13px;padding:4px 12px}
+.pst b{font-size:40px;line-height:1;font-weight:700;color:#fff;letter-spacing:-.5px}
+.pst b small{font-size:18px;font-weight:500;color:#8fb0b8;margin-left:4px;letter-spacing:0}
+.ps .hb{margin:10px 0 8px}
+/* ---- เลือกเดือน (ข้อ 4) ---- */
+.bar .lb{display:flex;align-items:center;gap:8px;color:var(--mut);font-weight:500}
+.mo{display:inline-flex;align-items:center;background:#fff;border:1px solid var(--line);border-radius:11px;padding:3px;gap:2px}
+.mo select{border:0;padding:5px 6px;background:none;min-width:96px}
+.mo button{font:inherit;border:0;background:none;width:32px;height:32px;border-radius:8px;cursor:pointer;color:var(--ink);display:grid;place-items:center}
+.mo button:hover:not(:disabled){background:#eef5f6}.mo button:disabled{color:#c3d1d4;cursor:default}
+.mo button:focus-visible{outline:3px solid #ffd08a;outline-offset:1px}
+tr.cur td:first-child{font-weight:700;box-shadow:inset 4px 0 var(--water)}
+/* ---- เมนูอัปเดตข้อมูล (ข้อ 6) ---- */
+.um{position:relative}
+.umm{position:absolute;right:0;top:calc(100% + 8px);background:#fff;color:var(--ink);border-radius:12px;box-shadow:0 14px 36px #0b2a3545;min-width:300px;padding:6px;z-index:30}
+.umm[hidden]{display:none}
+.umm button{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;border:0;background:none;padding:10px 12px;border-radius:8px;font:inherit;cursor:pointer;color:var(--ink)}
+.umm button:hover,.umm button:focus-visible{background:#eef5f6;outline:none}
+.umm svg{flex:none;margin-top:2px;color:var(--water)}.umm b{display:block;font-weight:600}.umm small{display:block;color:var(--mut);font-size:12px;margin-top:1px}
+.b1.dot{position:relative}.b1.dot::after{content:'';position:absolute;top:-4px;right:-4px;width:11px;height:11px;border-radius:50%;background:#f6a444;box-shadow:0 0 0 2px #0b2a35}
+.tw thead{position:sticky;top:0;z-index:2}.tw thead th{position:static}
+#dirty{border:0;font-family:inherit;cursor:pointer}#dirty:hover{background:#ffe7b8}
+@media print{.um{display:none!important}}
 </style></head><body>
 <header>
 <div class="logo"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"></path></svg></div>
 <div><h1>ติดตามตัวชี้วัดโรงไฟฟ้า BLG / BST</h1><p id="meta"></p></div>
-<div class="sp"></div><span id="dirty">● มีการเปลี่ยนแปลงที่ยังไม่บันทึก</span>
-<button class="btn b1" id="up" title="เลือกไฟล์ .xlsx หรือลากไฟล์มาวางที่หน้านี้"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 16V4m0 0L7 9m5-5 5 5M4 20h16"></path></svg>อัปโหลด Excel</button>
-<button class="btn b2" id="sv"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2zM17 21v-8H7v8M7 3v5h8"></path></svg>บันทึกไฟล์</button>
+<div class="sp"></div><button id="dirty" title="บันทึกข้อมูลที่อัปเดตลง index.html">● ยังไม่บันทึก · บันทึกเลย</button>
+<div class="um"><button class="btn b1" id="ub" aria-haspopup="menu" aria-expanded="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36M21 4v5h-5"></path></svg>อัปเดตข้อมูล<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button>
+<div class="umm" id="umm" role="menu" hidden="">
+<button role="menuitem" id="up"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 16V4m0 0L7 9m5-5 5 5M4 20h16"></path></svg><span><b>อัปโหลดไฟล์ Excel</b><small>เลือกไฟล์ .xlsx หรือลากไฟล์มาวางที่หน้านี้</small></span></button>
+<button role="menuitem" id="sv"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2zM17 21v-8H7v8M7 3v5h8"></path></svg><span><b>บันทึกเป็น index.html</b><small>เก็บข้อมูลที่แสดงอยู่ลงในไฟล์ dashboard</small></span></button>
+</div></div>
 <input type="file" id="file" accept=".xlsx,.xls" hidden="">
 </header>
 <main>
-<div class="bar"><label>ปี (พ.ศ.)<select id="yr"></select></label>
+<div class="bar"><label>ปี (พ.ศ.)<select id="yr"></select></label><div class="lb" id="mob"><span>เดือน</span><div class="mo"><button id="mpv" aria-label="เดือนก่อนหน้า" title="เดือนก่อนหน้า"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg></button><select id="mo" aria-label="เลือกเดือน"></select><button id="mnx" aria-label="เดือนถัดไป" title="เดือนถัดไป"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></button></div></div>
 <div class="seg" id="pl"><button data-v="all">ทั้งสองโรง</button><button data-v="BLG">BLG</button><button data-v="BST">BST</button></div>
 <div class="seg" id="vw"><button data-v="m">รายเดือน</button><button data-v="c">สะสม</button></div>
 <div class="seg" id="pd" title="เลือกงวดของค่าสะสม" style="display:none"><button data-v="h1">6 เดือนแรก</button><button data-v="fy">สิ้นปี</button></div><span class="pnote" id="pnote" style="display:none"></span></div>
@@ -133,11 +164,14 @@ let D=JSON.parse(document.getElementById('app-data').textContent),dirty=false,ch
 const $=s=>document.querySelector(s),M=['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
 const SHEETS=['SH','SR','UOR','GWEAF','POH','UOH','MOH','FOH'],COL={BLG:'#0e9aa7',BST:'#e8862a'},CMPC={BLG:'#6b4fa3',BST:'#b8336a'};
 const CFG={SH:{u:'ชม.',d:'ชั่วโมงเดินเครื่อง (Service Hours)'},SR:{u:'%',hi:1,d:'ดัชนี SR'},UOR:{u:'%',d:'อัตราหยุดเครื่องไม่ได้วางแผน (UOR)'},GWEAF:{u:'%',hi:1,d:'GWEAF (BLG) / EAF (BST)'},POH:{u:'ชม.',d:'ชั่วโมงหยุดตามแผน (POH)'},UOH:{u:'ชม.',d:'ชั่วโมงหยุดไม่ได้วางแผน (UOH)'},MOH:{u:'ชม.',d:'ชั่วโมงหยุดซ่อมบำรุง (MOH)'},FOH:{u:'ชม.',d:'ชั่วโมงหยุดฉุกเฉิน (FOH)'}};
-const S={tab:'ov',year:0,plant:'all',view:'m',per:'fy',evt:'all',q:'',so:{k:'s',d:-1}},num=x=>typeof x==='number'&&isFinite(x);
+const S={tab:'ov',year:0,mon:0,plant:'all',view:'m',per:'fy',evt:'all',q:'',so:{k:'s',d:-1}},num=x=>typeof x==='number'&&isFinite(x);
 const PL=()=>S.plant==='all'?['BLG','BST']:[S.plant],pn=(s,p)=>s==='GWEAF'&&p==='BST'?'BST (EAF)':p;
 // งวดของค่าสะสม: h1 = สะสม ณ สิ้น มิ.ย. (เดือน 6), fy = สะสม ณ สิ้น ธ.ค. (เดือน 12)
-const PM=()=>S.view==='c'?({h1:6,fy:12}[S.per]||0):0,vname=pe=>pe==='m'?'รายเดือน':'สะสม'+(PM()?(S.per==='h1'?' 6 เดือนแรก':' สิ้นปี'):'');
+const PM=()=>S.view==='c'?({h1:6,fy:12}[S.per]||0):0,vname=pe=>{if(pe==='m')return'รายเดือน';const m=PM();if(!m)return'สะสม';const c=S.year?Math.min(m,AM()):m;return c<m?'สะสม ม.ค.–'+M[c-1]:m===6?'สะสม 6 เดือนแรก':'สะสม สิ้นปี'};
 const f=x=>x==null?'–':x.toLocaleString('th-TH',{maximumFractionDigits:2});
+// เดือนที่มีข้อมูลจริงของแต่ละปี (อ้างอิงชีต SH) · AM() = เดือนที่กำลังดู (S.mon=0 หมายถึงเดือนล่าสุด)
+const avail=y=>D.sheets.SH.r.filter(r=>r[0]===y&&['BLG','BST'].some(p=>val('SH',r,p,'ACTUAL','m')!=null)).map(r=>r[1]),lastAv=y=>Math.max(0,...avail(y));
+const AM=()=>S.year?(S.mon||lastAv(S.year)||12):12;
 function idx(s){if(IX[s])return IX[s];const o={};D.sheets[s].h.forEach((x,i)=>{const p=String(x||'').split('_');if(p.length<3||!/^(BLG|BST)$/.test(p[0]))return;(o[p[0]]=o[p[0]]||{})[p[1]+(/สะสม/.test(x)?'c':/รายเดือน/.test(x)?'m':'*')]=i});return IX[s]=o}
 function val(s,r,pl,k,pe){const o=idx(s)[pl]||{},c=o[k+pe]??o[k+'*'];if(c==null||!num(r[c]))return null;
  // Excel เติมค่าสะสมต่อไปยังเดือนอนาคต: ถ้าเดือนนั้นยังไม่มีค่ารายเดือนจริง ถือว่ายังไม่มีข้อมูล
@@ -148,16 +182,28 @@ const HT=(s,t)=>t!=null&&(t>0||(s==='FOH'&&t===0));
 function st(s,a,t){if(a==null||t==null||!HT(s,t))return'na';return(CFG[s].hi?a>=t:a<=t)?'ok':'bad'}
 const pill=k=>`<span class="pill ${k}">${{ok:'✓ ผ่านเป้า',bad:'✕ ไม่ผ่านเป้า',na:'ไม่มีเป้า'}[k]}</span>`;
 // แถวตามงวด: ปีละ 1 แถว = เดือนปลายงวด (มิ.ย./ธ.ค.) ถ้ายังไม่ถึง ใช้เดือนล่าสุดที่มีข้อมูล (ไม่เกินปลายงวด)
-const perRows=(s,ps,yr)=>{const m=PM(),out=[];if(!m)return out;(yr?[yr]:yrs()).forEach(y=>{const rs=D.sheets[s].r.filter(r=>r[0]===y&&r[1]<=m&&ps.some(p=>val(s,r,p,'ACTUAL','c')!=null));if(rs.length)out.push(rs.reduce((a,b)=>b[1]>a[1]?b:a))});return out};
-function latest(s,pl,pe){const rs=pe==='c'&&PM()?perRows(s,[pl],S.year):rowsOf(s);for(let i=rs.length-1;i>=0;i--){const a=val(s,rs[i],pl,'ACTUAL',pe);if(a!=null)return{r:rs[i],a,t:val(s,rs[i],pl,'TARGET',pe)}}return null}
+const perRows=(s,ps,yr)=>{const m=Math.min(PM(),yr?AM():12),out=[];if(!PM())return out;(yr?[yr]:yrs()).forEach(y=>{const rs=D.sheets[s].r.filter(r=>r[0]===y&&r[1]<=m&&ps.some(p=>val(s,r,p,'ACTUAL','c')!=null));if(rs.length)out.push(rs.reduce((a,b)=>b[1]>a[1]?b:a))});return out};
+function latest(s,pl,pe){const c=AM(),rs=pe==='c'&&PM()?perRows(s,[pl],S.year):rowsOf(s).filter(r=>!S.year||r[1]<=c);for(let i=rs.length-1;i>=0;i--){const a=val(s,rs[i],pl,'ACTUAL',pe);if(a!=null)return{r:rs[i],a,t:val(s,rs[i],pl,'TARGET',pe)}}return null}
 function toast(t,e){const x=$('#toast');x.textContent=t;x.className='show'+(e?' err':'');clearTimeout(x.h);x.h=setTimeout(()=>x.className='',e?5000:3000)}
-function setDirty(v){dirty=v;$('#dirty').style.display=v?'inline-block':'none';$('#sv').classList.toggle('pulse',v)}
+function setDirty(v){dirty=v;$('#dirty').style.display=v?'inline-block':'none';$('#ub').classList.toggle('dot',v)}
 const kl=r=>PM()?plab(r):lab(r);
 function seg(id,key){document.querySelectorAll(id+' button').forEach(b=>{b.classList.toggle('on',b.dataset.v===String(S[key]));b.setAttribute('aria-pressed',b.dataset.v===String(S[key]));b.onclick=()=>{S[key]=b.dataset.v;render()}})}
+function monthBar(){
+ const mb=$('#mob'),av=S.year?avail(S.year):[],show=S.tab!=='EV'&&av.length>0;mb.style.display=show?'':'none';if(!show)return;
+ const first=Math.min(...av),last=Math.max(...av);if(S.mon&&S.mon>=last)S.mon=0;
+ const cur=AM(),ys=yrs().filter(y=>avail(y).length),yi=ys.indexOf(S.year),pv=$('#mpv'),nx=$('#mnx');
+ $('#mo').innerHTML=av.map(m=>`<option value="${m}" ${m===cur?'selected':''}>${M[m-1]}${m===last?' (ล่าสุด)':''}</option>`).join('');
+ $('#mo').onchange=e=>{const v=+e.target.value;S.mon=v===last?0:v;render()};
+ pv.disabled=cur<=first&&yi<=0;nx.disabled=cur>=last&&yi>=ys.length-1;
+ pv.onclick=()=>{if(cur>first)S.mon=cur-1;else{S.year=ys[yi-1];S.mon=0}render()};
+ nx.onclick=()=>{if(cur<last)S.mon=cur+1>=last?0:cur+1;else{S.year=ys[yi+1];const a=avail(S.year);S.mon=a.length>1?Math.min(...a):0}render()};
+}
+const asOf=()=>{const m=S.view==='c'&&PM()?Math.min(PM(),AM()):AM();if(S.year)return M[m-1]+' '+(S.year+543);
+ const lr=[...D.sheets.SH.r].reverse().find(r=>['BLG','BST'].some(p=>val('SH',r,p,'ACTUAL','m')!=null));return lr?M[Math.min(lr[1],m)-1]+' '+(lr[0]+543):'–'};
 function render(){
  $('#yr').innerHTML='<option value="0">ทุกปี</option>'+yrs().map(y=>`<option value="${y}" ${y===S.year?'selected':''}>${y+543}</option>`).join('');
- $('#yr').onchange=e=>{S.year=+e.target.value;render()};seg('#pl','plant');seg('#vw','view');seg('#pd','per');{const ev=S.tab==='EV';$('#vw').style.display=ev?'none':'';$('#pd').style.display=ev||S.view==='c'?'':'none'}
- {const m=PM(),nt=$('#pnote'),rr=m?perRows('SH',PL(),S.year):[],pr=rr[rr.length-1],part=m&&S.tab!=='EV'&&(!pr||pr[1]<m);nt.style.display=part?'':'none';
+ $('#yr').onchange=e=>{S.year=+e.target.value;S.mon=0;render()};monthBar();seg('#pl','plant');seg('#vw','view');seg('#pd','per');{const ev=S.tab==='EV';$('#vw').style.display=ev?'none':'';$('#pd').style.display=ev||S.view==='c'?'':'none'}
+ {const m=PM(),nt=$('#pnote'),rr=m?perRows('SH',PL(),S.year):[],pr=rr[rr.length-1],part=m&&S.tab!=='EV'&&!S.mon&&(!pr||pr[1]<m);nt.style.display=part?'':'none';
   if(part)nt.textContent=pr?'ปี '+(pr[0]+543)+' ข้อมูลยังไม่ครบถึง '+(m===6?'มิ.ย.':'ธ.ค.')+' · แสดงค่าสะสม '+plab(pr).replace(/ \d+$/,'')+' (เดือนล่าสุดที่มีข้อมูล)':'ปี '+(S.year+543)+' ยังไม่มีข้อมูลในงวดนี้'}
  $('#tabs').innerHTML=[['ov','ภาพรวม'],...SHEETS.map(s=>[s,s]),['EV','ประวัติหยุดเครื่อง']].map(([k,n])=>`<button class="tab ${S.tab===k?'on':''}" role="tab" aria-selected="${S.tab===k}" data-t="${k}">${n}</button>`).join('');
  document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{S.tab=b.dataset.t;render()});
@@ -170,10 +216,10 @@ function spark(s,p,pe,c){const m=pe==='c'?PM():0,rs=(m?(S.year?D.sheets[s].r.fil
  const mn=Math.min(...n),mx=Math.max(...n),sp=mx-mn||1,W=96,H=30,pts=v.map((x,i)=>x==null?null:[i*W/(v.length-1),H-3-(x-mn)/sp*(H-6)]).filter(Boolean);
  return`<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" aria-hidden="true"><polyline points="${pts.map(q=>q.map(z=>z.toFixed(1)).join(',')).join(' ')}" fill="none" stroke="${c}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="${pts[pts.length-1][0].toFixed(1)}" cy="${pts[pts.length-1][1].toFixed(1)}" r="3" fill="${c}"/></svg>`}
 function overview(){
- const pe=S.view,cnt={ok:0,bad:0,na:0},cell={},watch=[],pct=x=>Math.max(0,Math.min(100,x)).toFixed(1),
+ const pe=S.view,cnt={ok:0,bad:0,na:0},PC={},cell={},watch=[],pct=x=>Math.max(0,Math.min(100,x)).toFixed(1),
   sh=x=>x==null?'':x.toLocaleString('th-TH',{maximumFractionDigits:Math.abs(x)>=1000?0:Math.abs(x)>=100?1:2});
  const cards=SHEETS.map(s=>{
-  let when='';const ks=[],hi=CFG[s].hi,rows=PL().map(p=>{const l=latest(s,p,pe);if(l)when=kl(l.r);const k=l?st(s,l.a,l.t):'na',u=CFG[s].u,pc=u==='%'?'%':'',ht=l&&HT(s,l.t);cnt[k]++;ks.push(k);cell[s+p]={k,l};
+  let when='';const ks=[],hi=CFG[s].hi,rows=PL().map(p=>{const l=latest(s,p,pe);if(l)when=kl(l.r);const k=l?st(s,l.a,l.t):'na',u=CFG[s].u,pc=u==='%'?'%':'',ht=l&&HT(s,l.t);cnt[k]++;(PC[p]=PC[p]||{ok:0,bad:0,na:0})[k]++;ks.push(k);cell[s+p]={k,l};
    if(k==='bad')watch.push({s,p,l,g:Math.abs(l.a-l.t)/(Math.abs(l.t)||1)});
    const mx=l?(Math.max(l.a,ht?l.t:0)*1.12||1):1;
    return`<div class="pr p-${p}" style="--c:${COL[p]}"><span class="pc">${pn(s,p)}</span><span></span>${pill(k)}<div class="pv"><div><strong>${l?f(l.a)+pc:'–'}</strong><small>${ht?'เป้า '+(hi?'≥ ':'≤ ')+f(l.t)+pc:'ไม่มีเป้าหมาย'}</small></div></div></div>`}).join('');
@@ -185,9 +231,10 @@ function overview(){
  watch.sort((a,b)=>b.g-a.g);
  const wl=watch.length?`<div class="wl">${watch.slice(0,4).map(w=>{const u=CFG[w.s].u,pc=u==='%'?'%':' '+u;return`<button class="wi" data-g="${w.s}"><span class="p-${w.p}">${w.s} <em class="pc">${pn(w.s,w.p)}</em></span><small>${CFG[w.s].hi?'ต่ำกว่าเป้า':'เกินเป้า'} ${f(Math.abs(w.l.a-w.l.t))}${pc}</small></button>`}).join('')}</div>${watch.length>4?`<p class="hsub">และอีก ${watch.length-4} รายการ ดูได้จากตารางสถานะ</p>`:''}`
   :`<div class="allok">${tot?'ตัวชี้วัดที่มีเป้าหมายผ่านเป้าทั้งหมด':'ยังไม่มีตัวชี้วัดที่เทียบกับเป้าได้ในช่วงที่เลือก'}</div>`;
- $('#view').innerHTML=`<section class="hero"><div><h2><b>${cnt.ok}<small>/ ${tot}</small></b>ตัวชี้วัดผ่านเป้า ${S.year?'ปี '+(S.year+543):'ทุกปี'} (${vname(pe)})</h2>
-  <div class="hb" aria-hidden="true">${['ok','bad','na'].map(k=>cnt[k]?`<span class="${k}" style="flex:${cnt[k]}"></span>`:'').join('')}</div>
-  <div class="hg"><span><b>${cnt.ok}</b> ผ่าน</span><span><b>${cnt.bad}</b> ไม่ผ่าน</span><span><b>${cnt.na}</b> ไม่มีเป้า</span></div></div>
+ $('#view').innerHTML=`<section class="hero"><div class="hs"><h3>ผลเทียบเป้า ณ ${asOf()} · ${vname(pe)}</h3>${PL().map(p=>{const c=PC[p]||{ok:0,bad:0,na:0},t=c.ok+c.bad;
+   return`<div class="ps p-${p}" title="${p} ผ่านเป้า ${c.ok} จาก ${t} ตัวชี้วัดที่มีเป้า"><div class="pst"><em class="pc">${p}</em><b>${t?`${c.ok}<small>/ ${t}</small>`:'–'}</b></div>
+   <div class="hb" aria-hidden="true">${['ok','bad','na'].map(k=>c[k]?`<span class="${k}" style="flex:${c[k]}"></span>`:'').join('')}</div>
+   <div class="hg"><span><b>${c.ok}</b> ผ่าน</span><span><b>${c.bad}</b> ไม่ผ่าน</span><span><b>${c.na}</b> ไม่มีเป้า</span></div></div>`}).join('')}</div>
   <div class="hm"><h3>สถานะรายตัวชี้วัด คลิกช่องเพื่อดูรายละเอียด</h3>${mat}</div>
   <div><h3>${watch.length?'ต้องจับตา เรียงตามระยะห่างจากเป้า':'ต้องจับตา'}</h3>${wl}</div></section><div class="grid">${cards}</div>`;
  document.querySelectorAll('[data-g]').forEach(c=>{c.onclick=()=>{S.tab=c.dataset.g;render()};if(c.tagName!=='BUTTON')c.onkeydown=e=>{if(e.key==='Enter')c.onclick()}});
@@ -200,10 +247,10 @@ function detail(s){
  if(!has){$('#view').innerHTML=h+'<div class="card empty">ยังไม่มีข้อมูลของปีที่เลือก</div>';return}
  h+=`<div class="card" style="margin-bottom:16px"><div class="ch"><h3>${s} · ${CFG[s].d} (${vname(pe)}, หน่วย ${u})</h3><div class="sp"></div>${S.year&&yrs().length>1&&!ac?`<label class="noprint">เทียบกับปี <select id="cmp"><option value="0">ไม่เทียบ</option>${yrs().filter(y=>y!==S.year).reverse().map(y=>`<option value="${y}" ${y===S.cmp?'selected':''}>${y+543}</option>`).join('')}</select></label>`:''}</div><div class="cw"><canvas id="cv" role="img" aria-label="กราฟ ${s}"></canvas></div></div>`;
  h+=`<div class="card"><div class="ch"><h3>ตารางข้อมูล</h3><div class="sp"></div><button class="ghost sm noprint" id="csv">ส่งออก CSV</button><button class="ghost sm noprint" id="prt">พิมพ์ / PDF</button></div><div class="tw"><table><thead><tr><th rowspan="2">${ac?'งวด':'เดือน'}</th>${ps.map(p=>`<th colspan="3" style="text-align:center;color:${COL[p]}">${pn(s,p)}</th>`).join('')}</tr><tr style="font-size:12px">${ps.map(()=>'<th>เป้า</th><th>จริง</th><th>สถานะ</th>').join('')}</tr></thead><tbody>`;
- rs.forEach((r,i)=>{h+=`<tr id="r${i}"><td>${lab(r)}</td>`+ps.map(p=>{const a=val(s,r,p,'ACTUAL',pe),t=val(s,r,p,'TARGET',pe),k=st(s,a,t);return`<td class="${HT(s,t)?'':'mu'}">${HT(s,t)?f(t):'–'}</td><td class="${a==null?'mu':k==='ok'?'good':k==='bad'?'poor':''}"><b>${f(a)}</b></td><td>${a==null?'<span class="mu">–</span>':pill(k)}</td>`}).join('')+'</tr>'});
+ rs.forEach((r,i)=>{h+=`<tr id="r${i}"${S.year&&!ac&&r[0]===S.year&&r[1]===AM()?' class="cur"':''}><td>${lab(r)}</td>`+ps.map(p=>{const a=val(s,r,p,'ACTUAL',pe),t=val(s,r,p,'TARGET',pe),k=st(s,a,t);return`<td class="${HT(s,t)?'':'mu'}">${HT(s,t)?f(t):'–'}</td><td class="${a==null?'mu':k==='ok'?'good':k==='bad'?'poor':''}"><b>${f(a)}</b></td><td>${a==null?'<span class="mu">–</span>':pill(k)}</td>`}).join('')+'</tr>'});
  h+='</tbody></table></div></div>';const et=EVOF[s];
  if(et&&ps.includes('BLG')){const L=evList(et);h+=`<div class="card" style="margin-top:16px"><h3>รายการหยุดเครื่องย้อนหลัง BLG · ${L.length} รายการ รวม ${f(L.reduce((a,e)=>a+e.h,0))} ชม.</h3>${evRows(L)}</div>`}
- $('#view').innerHTML=h;
+ $('#view').innerHTML=h;{const c=$('#view tr.cur'),w=c&&c.closest('.tw');if(w)w.scrollTop=Math.max(0,c.offsetTop-w.clientHeight/2)}
  $('#csv').onclick=()=>csv(s,rs,ps,pe);$('#prt').onclick=()=>print();const cb=$('#cmp');if(cb)cb.onchange=e=>{S.cmp=+e.target.value;render()};
  if(!window.Chart){$('#view').querySelector('.cw').innerHTML='<div class="empty">โหลดไลบรารีกราฟไม่สำเร็จ กรุณาเชื่อมต่ออินเทอร์เน็ตแล้วรีเฟรช</div>';return}
  const ds=[];ps.forEach(p=>{const c=COL[p],bar=pe==='m';
@@ -265,7 +312,11 @@ function csv(s,rs,ps,pe){const hd=[PM()&&!S.year?'งวด':'เดือน'];
  const x='\ufeff'+L.map(r=>r.map(v=>v==null?'':'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\r\n'),a=document.createElement('a');
  a.href=URL.createObjectURL(new Blob([x],{type:'text/csv;charset=utf-8'}));a.download=`${s}_${S.year?S.year+543:'ทุกปี'}_${vname(pe)}.csv`;
  document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),4000)}
-$('#up').onclick=()=>$('#file').click();
+const um=$('#umm'),ub=$('#ub'),menu=o=>{um.hidden=!o;ub.setAttribute('aria-expanded',o);if(o)um.querySelector('button').focus()};
+ub.onclick=e=>{e.stopPropagation();menu(um.hidden)};
+addEventListener('click',e=>{if(!um.hidden&&!um.contains(e.target))menu(false)});
+addEventListener('keydown',e=>{if(e.key==='Escape'&&!um.hidden){menu(false);ub.focus()}});
+$('#up').onclick=()=>{menu(false);$('#file').click()};
 const cn=x=>typeof x==='string'&&x.trim()!==''&&isFinite(+x)?+x:x,ny=x=>{x=cn(x);return num(x)&&x>2400?x-543:x};
 const findSheet=(wb,fn)=>{const n=wb.SheetNames.find(fn);return n==null?null:wb.Sheets[n]};
 function loadFile(fl){
@@ -282,12 +333,12 @@ function applyBuf(buf,name,auto,upd){try{
    if(h.length>2&&r.length)nd.sheets[s]={h,r};else miss.push(s)});
   if(miss.length===SHEETS.length)throw new Error('ไม่พบชีต SH, SR, UOR, GWEAF, POH, UOH, MOH, FOH ตามรูปแบบ Template');
   const we=findSheet(wb,n=>/UOH/i.test(n)&&/ย้อนหลัง/.test(n)),evs=we?parseEv(we):[];if(evs.length)nd.events=evs;else miss.push('ข้อมูล UOH ย้อนหลัง');
-  D=nd;D.meta={file:name,updated:upd||new Date().toISOString()};IX={};
+  D=nd;D.meta={file:name,updated:upd||new Date().toISOString()};IX={};S.mon=0;
   if(auto){const y=yrs().filter(y=>D.sheets.SH.r.some(r=>r[0]===y&&num(r[2])));S.year=y.length?y[y.length-1]:0}
   else if(S.year&&!yrs().includes(S.year))S.year=0;
   setDirty(!auto);render();
   if(auto){if(miss.length||nof)toast('โหลดข้อมูลล่าสุดจาก '+name+' แล้ว'+(miss.length?' (ไม่พบชีต: '+miss.join(', ')+')':'')+(nof?' · พบ '+nof+' เซลล์สูตรที่ไม่มีค่าที่คำนวณไว้ ให้เปิดไฟล์ใน Excel แล้วบันทึกก่อนอัปโหลด':''),!!nof);return}
-  toast('อัปเดตข้อมูลจาก '+name+' แล้ว'+(miss.length?' (ไม่พบชีต: '+miss.join(', ')+')':'')+(nof?' · พบ '+nof+' เซลล์สูตรที่ไม่มีค่าที่คำนวณไว้ ให้เปิดไฟล์ใน Excel แล้วบันทึกก่อนอัปโหลด':'')+' · กด "บันทึกไฟล์" เพื่อเก็บค่าปัจจุบัน',!!nof);
+  toast('อัปเดตข้อมูลจาก '+name+' แล้ว'+(miss.length?' (ไม่พบชีต: '+miss.join(', ')+')':'')+(nof?' · พบ '+nof+' เซลล์สูตรที่ไม่มีค่าที่คำนวณไว้ ให้เปิดไฟล์ใน Excel แล้วบันทึกก่อนอัปโหลด':'')+' · กด "ยังไม่บันทึก · บันทึกเลย" เพื่อเก็บลง index.html',!!nof);
  }catch(err){toast((auto?'โหลด '+name+' อัตโนมัติไม่สำเร็จ แสดงข้อมูลชุดที่ฝังไว้แทน: ':'อ่านไฟล์ไม่สำเร็จ: ')+err.message,1)}}
 const AUTO=['Target ดัชนีตัวชี้วัด.xlsx','data.xlsx'];
 function autoLoad(i=0){if(i>=AUTO.length||!/^https?:$/.test(location.protocol)||!window.XLSX)return;const n=AUTO[i];
@@ -297,10 +348,17 @@ $('#file').onchange=e=>{const fl=e.target.files[0];e.target.value='';loadFile(fl
 addEventListener('dragover',e=>{if(e.dataTransfer&&[...e.dataTransfer.types].includes('Files')){e.preventDefault();document.body.classList.add('drag')}});
 addEventListener('dragleave',e=>{if(!e.relatedTarget)document.body.classList.remove('drag')});
 addEventListener('drop',e=>{e.preventDefault();document.body.classList.remove('drag');loadFile(e.dataTransfer.files[0])});
-$('#sv').onclick=()=>{
- const js=JSON.stringify(D).replace(/</g,'\\u003c'),out=SRC.replace(/(<script id="app-data" type="application\/json">)[\s\S]*?(<\/script>)/,(m,a,b)=>a+js+b);
- const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([out],{type:'text/html;charset=utf-8'}));a.download='dashboard_ติดตามตัวชี้วัด.html';
- document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),4000);setDirty(false);toast('บันทึกไฟล์ dashboard_ติดตามตัวชี้วัด.html แล้ว');};
+let fh=null;
+async function save(){
+ const js=JSON.stringify(D).replace(/</g,'\\u003c'),out=SRC.replace(/(<script id="app-data" type="application\/json">)[\s\S]*?(<\/script>)/,(m,a,b)=>a+js+b),blob=new Blob([out],{type:'text/html;charset=utf-8'});
+ // Chrome/Edge: เลือกไฟล์ index.html เดิมเพื่อเขียนทับได้ทันที (ครั้งถัดไปในหน้าต่างเดียวกันจะเขียนทับไฟล์เดิมเลย)
+ if(window.showSaveFilePicker){try{
+  if(!fh)fh=await showSaveFilePicker({suggestedName:'index.html',types:[{description:'ไฟล์ dashboard (HTML)',accept:{'text/html':['.html']}}]});
+  const w=await fh.createWritable();await w.write(blob);await w.close();setDirty(false);toast('บันทึกลง '+fh.name+' แล้ว');return
+ }catch(e){if(e&&e.name==='AbortError')return;fh=null}}
+ const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='index.html';
+ document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),4000);setDirty(false);toast('ดาวน์โหลด index.html แล้ว · นำไปวางแทนไฟล์เดิมในโฟลเดอร์ dashboard')}
+$('#sv').onclick=()=>{menu(false);save()};$('#dirty').onclick=save;
 onbeforeunload=e=>{if(dirty){e.preventDefault();e.returnValue=''}};
 (()=>{const y=yrs().filter(y=>D.sheets.SH.r.some(r=>r[0]===y&&num(r[2])));S.year=y.length?y[y.length-1]:0;render()})();
 autoLoad();
