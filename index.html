@@ -291,7 +291,7 @@ function setDirty(v){dirty=v;$('#dirty').style.display=v?'inline-block':'none';$
 const kl=r=>PM()?plab(r):lab(r);
 function seg(id,key){document.querySelectorAll(id+' button').forEach(b=>{b.classList.toggle('on',b.dataset.v===String(S[key]));b.setAttribute('aria-pressed',b.dataset.v===String(S[key]));b.onclick=()=>{S[key]=b.dataset.v;render()}})}
 function monthBar(){
- const mb=$('#mob'),av=S.year?avail(S.year):[],show=S.tab!=='EV'&&av.length>0;mb.style.display=show?'':'none';if(!show)return;
+ const mb=$('#mob'),av=S.year?avail(S.year):[],show=av.length>0;mb.style.display=show?'':'none';if(!show)return;
  const first=Math.min(...av),last=Math.max(...av);if(S.mon&&S.mon>=last)S.mon=0;
  const cur=AM(),ys=yrs().filter(y=>avail(y).length),yi=ys.indexOf(S.year),pv=$('#mpv'),nx=$('#mnx');
  $('#mo').innerHTML=av.map(m=>`<option value="${m}" ${m===cur?'selected':''}>${M[m-1]}${m===last?' (ล่าสุด)':''}</option>`).join('');
@@ -304,8 +304,8 @@ const asOf=()=>{const m=S.view==='c'&&PM()?Math.min(PM(),AM()):AM();if(S.year)re
  const lr=[...D.sheets.SH.r].reverse().find(r=>['BLG','BST'].some(p=>val('SH',r,p,'ACTUAL','m')!=null));return lr?M[Math.min(lr[1],m)-1]+' '+(lr[0]+543):'–'};
 function render(){
  $('#yr').innerHTML='<option value="0">ทุกปี</option>'+yrs().map(y=>`<option value="${y}" ${y===S.year?'selected':''}>${y+543}</option>`).join('');
- $('#yr').onchange=e=>{S.year=+e.target.value;S.mon=0;render()};monthBar();seg('#pl','plant');seg('#vw','view');seg('#pd','per');{const ev=S.tab==='EV';$('#vw').style.display=ev?'none':'';$('#pd').style.display=ev||S.view==='c'?'':'none'}
- {const m=PM(),nt=$('#pnote'),rr=m?perRows('SH',PL(),S.year):[],pr=rr[rr.length-1],part=m&&S.tab!=='EV'&&!S.mon&&(!pr||pr[1]<m);nt.style.display=part?'':'none';
+ $('#yr').onchange=e=>{S.year=+e.target.value;S.mon=0;render()};monthBar();seg('#pl','plant');seg('#vw','view');seg('#pd','per');{$('#vw').style.display='';$('#pd').style.display=S.view==='c'?'':'none'}
+ {const m=PM(),nt=$('#pnote'),rr=m?perRows('SH',PL(),S.year):[],pr=rr[rr.length-1],part=m&&!S.mon&&(!pr||pr[1]<m);nt.style.display=part?'':'none';
   if(part)nt.textContent=pr?'ปี '+(pr[0]+543)+' ข้อมูลยังไม่ครบถึง '+(m===6?'มิ.ย.':'ธ.ค.')+' · แสดงค่าสะสม '+plab(pr).replace(/ \d+$/,'')+' (เดือนล่าสุดที่มีข้อมูล)':'ปี '+(S.year+543)+' ยังไม่มีข้อมูลในงวดนี้'}
  $('#tabs').innerHTML=[['ov','ภาพรวม'],...SHEETS.map(s=>[s,s]),['EV','ประวัติหยุดเครื่อง']].map(([k,n])=>`<button class="tab ${S.tab===k?'on':''}" role="tab" aria-selected="${S.tab===k}" data-t="${k}">${n}</button>`).join('');
  document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{S.tab=b.dataset.t;render()});
@@ -372,32 +372,32 @@ function detail(s){
 }
 const EVT={annual:{n:'MOH · งานประจำปี',c:'#1b7f93'},emergency:{n:'MOH · ซ่อมฉุกเฉิน',c:'#e8862a'},foh:{n:'FOH · หยุดฉุกเฉิน',c:'#d9434a'}},EVOF={UOH:['annual','emergency','foh'],MOH:['annual','emergency'],FOH:['foh']};
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])),dt=s=>{const[y,m,d]=s.slice(0,10).split('-');return+d+' '+M[m-1]+' '+(+y+543)+' '+s.slice(11)};
-const evList=(ty,q,m)=>(D.events||[]).filter(e=>ty.includes(e.t)&&(!S.year||e.g===S.year)&&(!m||+e.s.slice(5,7)<=m)&&(!q||e.d.toLowerCase().includes(q.toLowerCase()))).sort((a,b)=>(a[S.so.k]<b[S.so.k]?-1:a[S.so.k]>b[S.so.k]?1:0)*S.so.d);
+const evList=(ty,q,m,x)=>(D.events||[]).filter(e=>ty.includes(e.t)&&(!S.year||e.g===S.year)&&(!m||(x?+e.s.slice(5,7)===m:+e.s.slice(5,7)<=m))&&(!q||e.d.toLowerCase().includes(q.toLowerCase()))).sort((a,b)=>(a[S.so.k]<b[S.so.k]?-1:a[S.so.k]>b[S.so.k]?1:0)*S.so.d);
 function evRows(L){const mx=Math.max(1,...L.map(e=>e.h));return'<div class="tw"><table class="tl"><thead><tr>'+[['s','เริ่ม'],['e','แล้วเสร็จ'],['','รายละเอียด'],['t','ประเภท'],['h','ชม.']].map(([k,n])=>k?`<th class="s" data-k="${k}" title="คลิกเพื่อเรียงลำดับ">${n}${S.so.k===k?(S.so.d>0?' ▲':' ▼'):''}</th>`:`<th>${n}</th>`).join('')+'</tr></thead><tbody>'+(L.length?L.map(e=>{const c=EVT[e.t].c,w=e.h/mx*100;
  return`<tr><td>${dt(e.s)}</td><td>${dt(e.e)}</td><td style="text-align:left;min-width:240px">${esc(e.d)}${e.s.slice(0,4)!==String(e.g)?' <span class="warn" title="ปีของวันที่ในไฟล์ไม่ตรงกับปีของกลุ่มข้อมูล">⚠</span>':''}</td><td><span class="pill" style="background:${c}22;color:${c}">${EVT[e.t].n}</span></td><td style="background:linear-gradient(90deg,${c}33 ${w}%,transparent ${w}%)"><b>${f(e.h)}</b></td></tr>`}).join(''):'<tr><td colspan="5" class="empty">ไม่พบรายการ</td></tr>')+'</tbody></table></div>'}
 const EVS={annual:'MOH ประจำปี',emergency:'MOH ฉุกเฉิน',foh:'FOH'},EPM=()=>S.per==='h1'?6:12,
- sumEv=(ty,y,m)=>{const l=(D.events||[]).filter(e=>ty.includes(e.t)&&(!y||e.g===y)&&+e.s.slice(5,7)<=m);return{h:l.reduce((a,e)=>a+e.h,0),n:l.length}},
+ sumEv=(ty,y,m,x)=>{const l=(D.events||[]).filter(e=>ty.includes(e.t)&&(!y||e.g===y)&&(x?+e.s.slice(5,7)===m:+e.s.slice(5,7)<=m));return{h:l.reduce((a,e)=>a+e.h,0),n:l.length}},
  lastMo=y=>Math.max(0,...D.sheets.SH.r.filter(r=>r[0]===y&&val('SH',r,'BLG','ACTUAL','m')!=null).map(r=>r[1]));
 function events(){
  if(S.plant==='BST'){$('#view').innerHTML='<div class="card empty">ชีต "ข้อมูล UOH ย้อนหลัง" มีข้อมูลของ BLG เท่านั้น เลือก BLG หรือทั้งสองโรงเพื่อดูข้อมูล</div>';return}
- const A=Object.keys(EVT),pm=EPM(),pl=S.per==='h1'?'สะสม 6 เดือนแรก (ม.ค.–มิ.ย.)':'สะสมสิ้นปี (ม.ค.–ธ.ค.)',ty=A.filter(k=>S.evt==='all'||S.evt===k),L=evList(ty,S.q,pm),ys=[...new Set((D.events||[]).map(e=>e.g))].sort();
- const card=(k,n,c,clk)=>{const a=sumEv(k,S.year,6),b=sumEv(k,S.year,12);
-  return`<div class="card kpi${clk?' ec':''}"${clk?` data-e="${clk}"`:''} style="--c:${c};${clk?'cursor:pointer;':''}${clk&&S.evt===clk?'box-shadow:0 0 0 2px '+c:''}"><div class="kt"><i></i>${n}</div><div class="hp"><div class="${S.per==='h1'?'on':''}"><span>สะสม 6 เดือนแรก</span><b>${f(a.h)}</b><small>ชม. · ${a.n} รายการ</small></div><div class="${S.per==='fy'?'on':''}"><span>สะสมสิ้นปี</span><b>${f(b.h)}</b><small>ชม. · ${b.n} รายการ</small></div></div>${clk?'<div class="ks">คลิกเพื่อกรองเฉพาะประเภทนี้</div>':''}</div>`};
+ const mv=S.view==='m',em=mv&&S.year?AM():0,pm=S.year?Math.min(EPM(),AM()):EPM(),A=Object.keys(EVT),pl=em?'เดือน '+M[em-1]+' '+(S.year+543):mv?'ทุกรายการ':pm<EPM()?'สะสม ม.ค.–'+M[pm-1]+' '+(S.year+543):S.per==='h1'?'สะสม 6 เดือนแรก (ม.ค.–มิ.ย.)':'สะสมสิ้นปี (ม.ค.–ธ.ค.)',ty=A.filter(k=>S.evt==='all'||S.evt===k),L=em?evList(ty,S.q,em,1):mv?evList(ty,S.q):evList(ty,S.q,pm),ys=[...new Set((D.events||[]).map(e=>e.g))].sort();
+ const card=(k,n,c,clk)=>{const a=em?sumEv(k,S.year,em,1):sumEv(k,S.year,6),b=em?sumEv(k,S.year,em):sumEv(k,S.year,12),oa=em?1:!mv&&S.per==='h1',ob=em?0:!mv&&S.per==='fy',l1=em?'เดือน '+M[em-1]:'สะสม 6 เดือนแรก',l2=em?'สะสม ม.ค.–'+M[em-1]:'สะสมสิ้นปี';
+  return`<div class="card kpi${clk?' ec':''}"${clk?` data-e="${clk}"`:''} style="--c:${c};${clk?'cursor:pointer;':''}${clk&&S.evt===clk?'box-shadow:0 0 0 2px '+c:''}"><div class="kt"><i></i>${n}</div><div class="hp"><div class="${oa?'on':''}"><span>${l1}</span><b>${f(a.h)}</b><small>ชม. · ${a.n} รายการ</small></div><div class="${ob?'on':''}"><span>${l2}</span><b>${f(b.h)}</b><small>ชม. · ${b.n} รายการ</small></div></div>${clk?'<div class="ks">คลิกเพื่อกรองเฉพาะประเภทนี้</div>':''}</div>`};
  let h='<div class="kpis">'+A.map(k=>card([k],EVT[k].n,EVT[k].c,k)).join('')+card(A,'รวมทุกประเภท','#0b2a35','')+'</div>';
  const cell=(v,g)=>`<td class="${v?'':'mu'}${g?' gl':''}">${v?f(v):'–'}</td>`,
   rows=ys.map(y=>{const lm=lastMo(y);return`<tr class="${y===S.year?'cur':''}"><td>${y+543}${lm&&lm<12?` <span class="warn" title="ข้อมูลถึง ${M[lm-1]}">*</span>`:''}</td>`+[6,12].map((m,g)=>A.map((k,i)=>cell(sumEv([k],y,m).h,g&&!i)).join('')+`<td><b>${sumEv(A,y,m).h?f(sumEv(A,y,m).h):'–'}</b></td>`).join('')+'</tr>'}).join(''),
   part=ys.filter(y=>{const l=lastMo(y);return l&&l<12});
  h+=`<div class="card" style="margin-bottom:16px"><h3>ชั่วโมงหยุดเครื่องสะสมรายปี · 6 เดือนแรก เทียบ สิ้นปี (BLG, หน่วย ชม.)</h3><div class="tw"><table class="sx"><thead><tr><th rowspan="2">ปี</th><th colspan="4" style="text-align:center">สะสม 6 เดือนแรก (ม.ค.–มิ.ย.)</th><th colspan="4" class="gl" style="text-align:center">สะสมสิ้นปี (ม.ค.–ธ.ค.)</th></tr><tr style="font-size:12px">${[0,1].map(g=>A.map((k,i)=>`<th${g&&!i?' class="gl"':''}>${EVS[k]}</th>`).join('')+'<th>รวม</th>').join('')}</tr></thead><tbody>${rows}</tbody></table></div>${part.length?`<div class="mf">* ปีที่ข้อมูลยังไม่ครบ: ${part.map(y=>(y+543)+' (ถึง '+M[lastMo(y)-1]+')').join(', ')} · ค่าสะสมนับเท่าที่มีข้อมูลในไฟล์</div>`:''}</div>`;
- h+=`<div class="card" style="margin-bottom:16px"><h3>ชั่วโมงหยุดเครื่องตามประเภท (BLG) · ${pl}${S.year?' · ปี '+(S.year+543):' · รายปี'}</h3><div class="cw" style="height:320px"><canvas id="cv"></canvas></div></div>`;
+ h+=`<div class="card" style="margin-bottom:16px"><h3>ชั่วโมงหยุดเครื่องตามประเภท (BLG) · ${em?'รายเดือน (เลือก '+M[em-1]+')':pl}${S.year?' · ปี '+(S.year+543)+' <small style="font-weight:400;color:var(--mut)">คลิกแท่งกราฟเพื่อเลือกเดือน</small>':' · รายปี'}</h3><div class="cw" style="height:320px"><canvas id="cv"></canvas></div></div>`;
  h+=`<div class="card"><div class="evh"><h3>รายการหยุดเครื่องย้อนหลัง · ${pl} · ${L.length} รายการ รวม ${f(L.reduce((a,e)=>a+e.h,0))} ชม.</h3><div class="sp"></div><input id="q" placeholder="ค้นหารายละเอียด เช่น Gen. air cooler, Unit 3" value="${esc(S.q)}"><button class="ghost" id="rs">ล้างตัวกรอง</button></div>${evRows(L)}</div>`;
  $('#view').innerHTML=h;
  document.querySelectorAll('.ec').forEach(c=>c.onclick=()=>{S.evt=S.evt===c.dataset.e?'all':c.dataset.e;render()});
  $('#rs').onclick=()=>{S.evt='all';S.q='';render()};
  $('#q').oninput=e=>{S.q=e.target.value;render();const q=$('#q');q.focus();q.setSelectionRange(q.value.length,q.value.length)};
  if(!window.Chart)return;
- const lb=S.year?M.slice(0,pm):ys.map(y=>y+543);
- chart=new Chart($('#cv'),{type:'bar',data:{labels:lb,datasets:ty.map(k=>{const a=lb.map(()=>0);L.filter(e=>e.t===k).forEach(e=>{a[S.year?+e.s.slice(5,7)-1:ys.indexOf(e.g)]+=e.h});return{label:EVT[k].n,data:a.map(x=>Math.round(x*100)/100),backgroundColor:EVT[k].c+'cc',borderRadius:4}})},
-  options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{labels:{usePointStyle:true,boxWidth:8,font:{family:'Noto Sans Thai'}}},tooltip:{callbacks:{label:c=>' '+c.dataset.label+': '+f(c.parsed.y)+' ชม.'}}},
+ const lb=S.year?M.slice(0,em?12:pm):ys.map(y=>y+543),LC=em?evList(ty,S.q,12):L;
+ chart=new Chart($('#cv'),{type:'bar',data:{labels:lb,datasets:ty.map(k=>{const a=lb.map(()=>0);LC.filter(e=>e.t===k).forEach(e=>{a[S.year?+e.s.slice(5,7)-1:ys.indexOf(e.g)]+=e.h});return{label:EVT[k].n,data:a.map(x=>Math.round(x*100)/100),backgroundColor:lb.map((_,i)=>EVT[k].c+(em&&i!==em-1?'40':'cc')),borderRadius:4}})},
+  options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},onClick:(e,el,c)=>{if(!S.year)return;const a=c.getElementsAtEventForMode(e,'index',{intersect:false},true)[0];if(!a)return;const m=a.index+1,av=avail(S.year);if(!av.includes(m))return;S.mon=m===Math.max(...av)?0:m;render()},plugins:{legend:{labels:{usePointStyle:true,boxWidth:8,font:{family:'Noto Sans Thai'}}},tooltip:{callbacks:{label:c=>' '+c.dataset.label+': '+f(c.parsed.y)+' ชม.'}}},
   scales:{x:{stacked:true,grid:{display:false}},y:{stacked:true,min:0,title:{display:true,text:'ชม.'}}}}})}
 function parseEv(ws){const a=XLSX.utils.sheet_to_json(ws,{header:1,defval:null,raw:true}),out=[];let g=0,t=null;
  const iso=n=>new Date(Math.round((n-25569)*1440)*60000).toISOString().slice(0,16).replace('T',' ');
