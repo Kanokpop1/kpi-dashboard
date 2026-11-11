@@ -56,6 +56,58 @@ footer{max-width:1280px;margin:0 auto;padding:0 28px 40px;color:var(--mut);font-
 @media(max-width:640px){main{padding:16px}header{padding:12px 16px}.cw{height:300px}}
 body.drag::after{content:'วางไฟล์ Excel เพื่ออัปเดตข้อมูล';position:fixed;inset:12px;border:3px dashed var(--water);border-radius:18px;background:#1b7f9322;display:grid;place-items:center;font-size:22px;font-weight:700;color:var(--ink);z-index:60;pointer-events:none}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ---- ปรับโฉมหน้าแรก ---- */
+body{background:#eef3f3 linear-gradient(#e2ecec,#eef3f3) no-repeat;background-size:100% 320px;font-variant-numeric:tabular-nums}
+header{background:#0b2a35;overflow:hidden;padding-bottom:20px}
+header::after{content:'';position:absolute;left:0;right:0;bottom:0;height:26px;z-index:-1;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='26' viewBox='0 0 240 26'%3E%3Cpath d='M0 14c30 0 30-9 60-9s30 9 60 9 30-9 60-9 30 9 60 9v12H0z' fill='%231b7f93' fill-opacity='.55'/%3E%3Cpath d='M0 19c30 0 30-6 60-6s30 6 60 6 30-6 60-6 30 6 60 6v7H0z' fill='%230e9aa7'/%3E%3C/svg%3E") repeat-x bottom}
+.logo{background:var(--bst);border-radius:50%}
+.hero{background:#0b2a35;color:#fff;border-radius:18px;padding:24px 26px;margin-bottom:18px;display:grid;grid-template-columns:minmax(220px,.9fr) minmax(0,1.7fr) minmax(220px,1fr);gap:28px;align-items:start;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.hero>div{min-width:0}
+.hero h2{margin:0;font-size:17px;font-weight:500;line-height:1.5;color:#c9dbdf}
+.hero h2 b{display:block;font-size:68px;line-height:1;font-weight:700;color:#fff;letter-spacing:-1px}
+.hero h2 b small{font-size:26px;font-weight:500;color:#8fb0b8;letter-spacing:0;margin-left:6px}
+.hero h3{margin:0 0 10px;font-size:14px;font-weight:600;color:#c9dbdf}
+.hb{display:flex;gap:2px;height:10px;margin:16px 0 10px;transform-origin:left;animation:grow .7s cubic-bezier(.2,.7,.2,1)}
+.hb span{border-radius:5px;min-width:6px}.hb .ok,.mx.ok{background:#178553}.hb .bad,.mx.bad{background:#cf3a41}.hb .na{background:#ffffff2e}
+.hg{font-size:12px;color:#a9c3c9;display:flex;gap:14px;flex-wrap:wrap}.hg b{color:#fff}
+.hsub{font-size:12px;color:#8fb0b8;margin:10px 0 0}
+.mw{overflow-x:auto}.mg{display:grid;grid-template-columns:auto repeat(8,minmax(46px,1fr));gap:5px;align-items:stretch;min-width:520px}
+.mg .mh2{font-size:11px;font-weight:600;color:#a9c3c9;text-align:center;padding-bottom:2px}
+.mg .ml{display:flex;align-items:center;gap:6px;font-weight:600;font-size:13px;padding-right:8px}.mg .ml i{width:10px;height:10px;border-radius:50%;background:var(--c)}
+.mx{font:inherit;border:0;color:#fff;border-radius:9px;padding:8px 2px 6px;cursor:pointer;text-align:center;line-height:1.15;transition:transform .12s,filter .12s}
+.mx b{display:block;font-size:17px}.mx small{display:block;font-size:11px;opacity:.9;white-space:nowrap}
+.mx.na{background:#ffffff14;color:#a9c3c9}.mx:hover{transform:translateY(-2px);filter:brightness(1.15)}
+.mx:focus-visible,.wi:focus-visible,.mc:focus-visible{outline:3px solid #ffd08a;outline-offset:2px}
+.wl{display:grid;gap:6px}.wi{font:inherit;text-align:left;color:#fff;background:#ffffff10;border:0;border-left:4px solid #cf3a41;border-radius:8px;padding:8px 12px;cursor:pointer;display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.wi:hover{background:#ffffff1f}.wi span{font-weight:600}.wi small{color:#f3b9bc;font-size:12px;text-align:right}
+.allok{background:#17855333;border-radius:10px;padding:14px;color:#bff0d6;font-size:13px;line-height:1.6}
+.mc{position:relative;overflow:hidden;padding-top:20px}
+.mc::before{content:'';position:absolute;left:0;right:0;top:0;height:5px;background:var(--line)}
+.mc.s-ok::before{background:var(--ok)}.mc.s-bad::before{background:var(--bad)}
+.mc:hover{box-shadow:0 10px 24px #0b2a351c}
+.mh{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 8px}.mh b{font-size:22px;letter-spacing:.3px}.mh span{flex-basis:100%}
+.pr .pv strong{font-size:24px}
+.bl{grid-column:1/-1;position:relative;height:8px;border-radius:4px;background:#e8eff0;margin-top:6px}
+.bl span{position:absolute;left:0;top:0;bottom:0;border-radius:4px;background:var(--c);transform-origin:left;animation:grow .7s cubic-bezier(.2,.7,.2,1)}
+.bl em{position:absolute;top:-4px;bottom:-4px;width:3px;margin-left:-1.5px;background:var(--ink);border-radius:2px;box-shadow:0 0 0 2px #fff}
+.blk{grid-column:1/-1;display:flex;justify-content:space-between;font-size:11px;color:var(--mut);margin-top:3px}
+@keyframes grow{from{transform:scaleX(0)}}
+.tab{border-radius:9px 9px 0 0}.tab:hover{background:#ffffffaa;color:var(--ink)}
+@media(max-width:1020px){.hero{grid-template-columns:1fr 1fr}.hero .hm{grid-column:1/-1;order:3}}
+@media(max-width:640px){.hero{grid-template-columns:1fr;padding:18px}.hero h2 b{font-size:54px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+/* ---- แยกโรงไฟฟ้าให้ชัด ---- */
+.p-BLG{--cd:#0a7480;--ct:#e2f3f4}.p-BST{--cd:#b4590a;--ct:#fdeedd}
+.pc{font-style:normal;font-weight:700;font-size:12.5px;color:#fff;background:var(--cd);border-radius:6px;padding:2px 10px;letter-spacing:.3px;white-space:nowrap}
+.pr{border-top:0;border-left:5px solid var(--cd);background:var(--ct);border-radius:8px;padding:10px 12px;margin-top:10px}
+.pr .pv small{color:#4d6a73}
+.pill.na{background:#ffffffb0}
+.mg{row-gap:12px}.mg .ml{padding-right:4px}.mg .ml .pc{display:block;width:100%;text-align:center;padding:6px 12px;font-size:13px}
+.mg .ml.p-BLG~.ml.p-BST,.mg .ml.p-BST{position:relative}
+.wi .pc{margin-left:4px;font-size:11.5px;padding:1px 8px}
+.kpi.card{background:var(--ct);border-left-color:var(--cd)}.kt{gap:10px}
+#pl button[data-v=BLG].on{background:#0a7480}#pl button[data-v=BST].on{background:#b4590a}
 </style></head><body>
 <header>
 <div class="logo"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"></path></svg></div>
@@ -94,7 +146,7 @@ const rowsOf=s=>D.sheets[s].r.filter(r=>!S.year||r[0]===S.year),yrs=()=>[...new 
 const plab=r=>(r[1]===1?'ม.ค. ':'ม.ค.–'+M[r[1]-1]+' ')+(r[0]+543),lab=r=>PM()&&!S.year?plab(r):S.year?M[r[1]-1]:M[r[1]-1]+' '+String(r[0]+543).slice(2);
 const HT=(s,t)=>t!=null&&(t>0||(s==='FOH'&&t===0));
 function st(s,a,t){if(a==null||t==null||!HT(s,t))return'na';return(CFG[s].hi?a>=t:a<=t)?'ok':'bad'}
-const pill=k=>`<span class="pill ${k}">${{ok:'ผ่านเป้า',bad:'ไม่ผ่านเป้า',na:'ไม่มีเป้า'}[k]}</span>`;
+const pill=k=>`<span class="pill ${k}">${{ok:'✓ ผ่านเป้า',bad:'✕ ไม่ผ่านเป้า',na:'ไม่มีเป้า'}[k]}</span>`;
 // แถวตามงวด: ปีละ 1 แถว = เดือนปลายงวด (มิ.ย./ธ.ค.) ถ้ายังไม่ถึง ใช้เดือนล่าสุดที่มีข้อมูล (ไม่เกินปลายงวด)
 const perRows=(s,ps,yr)=>{const m=PM(),out=[];if(!m)return out;(yr?[yr]:yrs()).forEach(y=>{const rs=D.sheets[s].r.filter(r=>r[0]===y&&r[1]<=m&&ps.some(p=>val(s,r,p,'ACTUAL','c')!=null));if(rs.length)out.push(rs.reduce((a,b)=>b[1]>a[1]?b:a))});return out};
 function latest(s,pl,pe){const rs=pe==='c'&&PM()?perRows(s,[pl],S.year):rowsOf(s);for(let i=rs.length-1;i>=0;i--){const a=val(s,rs[i],pl,'ACTUAL',pe);if(a!=null)return{r:rs[i],a,t:val(s,rs[i],pl,'TARGET',pe)}}return null}
@@ -118,16 +170,30 @@ function spark(s,p,pe,c){const m=pe==='c'?PM():0,rs=(m?(S.year?D.sheets[s].r.fil
  const mn=Math.min(...n),mx=Math.max(...n),sp=mx-mn||1,W=96,H=30,pts=v.map((x,i)=>x==null?null:[i*W/(v.length-1),H-3-(x-mn)/sp*(H-6)]).filter(Boolean);
  return`<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" aria-hidden="true"><polyline points="${pts.map(q=>q.map(z=>z.toFixed(1)).join(',')).join(' ')}" fill="none" stroke="${c}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="${pts[pts.length-1][0].toFixed(1)}" cy="${pts[pts.length-1][1].toFixed(1)}" r="3" fill="${c}"/></svg>`}
 function overview(){
- const pe=S.view,cnt={ok:0,bad:0,na:0};
+ const pe=S.view,cnt={ok:0,bad:0,na:0},cell={},watch=[],pct=x=>Math.max(0,Math.min(100,x)).toFixed(1),
+  sh=x=>x==null?'':x.toLocaleString('th-TH',{maximumFractionDigits:Math.abs(x)>=1000?0:Math.abs(x)>=100?1:2});
  const cards=SHEETS.map(s=>{
-  let when='';const rows=PL().map(p=>{const l=latest(s,p,pe);if(l)when=kl(l.r);const k=l?st(s,l.a,l.t):'na',u=CFG[s].u;cnt[k]++;
-   return`<div class="pr" style="--c:${COL[p]}"><i></i><span>${pn(s,p)}</span>${pill(k)}<div class="pv"><div><strong>${l?f(l.a)+(u==='%'?'%':''):'–'}</strong><small>${l&&HT(s,l.t)?'เป้า '+f(l.t)+(u==='%'?'%':''):'ไม่มีเป้าหมาย'}</small></div>${spark(s,p,pe,COL[p])}</div></div>`}).join('');
-  return`<div class="card mc" tabindex="0" data-g="${s}"><div class="mh"><b>${s}</b><span>${CFG[s].d}</span></div>${rows}<div class="mf">${when?'ข้อมูลล่าสุด '+when:'ยังไม่มีข้อมูล'} · ${vname(pe)}</div></div>`}).join('');
- $('#view').innerHTML=`<div class="sum"><div class="ok"><b>${cnt.ok}</b><span>ตัวชี้วัดที่ผ่านเป้า</span></div><div class="bad"><b>${cnt.bad}</b><span>ตัวชี้วัดที่ไม่ผ่านเป้า</span></div><div><b>${cnt.na}</b><span>ไม่มีเป้าหมาย</span></div></div><div class="grid">${cards}</div>`;
- document.querySelectorAll('.mc').forEach(c=>{c.onclick=()=>{S.tab=c.dataset.g;render()};c.onkeydown=e=>{if(e.key==='Enter')c.onclick()}});
+  let when='';const ks=[],hi=CFG[s].hi,rows=PL().map(p=>{const l=latest(s,p,pe);if(l)when=kl(l.r);const k=l?st(s,l.a,l.t):'na',u=CFG[s].u,pc=u==='%'?'%':'',ht=l&&HT(s,l.t);cnt[k]++;ks.push(k);cell[s+p]={k,l};
+   if(k==='bad')watch.push({s,p,l,g:Math.abs(l.a-l.t)/(Math.abs(l.t)||1)});
+   const mx=l?(Math.max(l.a,ht?l.t:0)*1.12||1):1;
+   return`<div class="pr p-${p}" style="--c:${COL[p]}"><span class="pc">${pn(s,p)}</span><span></span>${pill(k)}<div class="pv"><div><strong>${l?f(l.a)+pc:'–'}</strong><small>${ht?'เป้า '+(hi?'≥ ':'≤ ')+f(l.t)+pc:'ไม่มีเป้าหมาย'}</small></div></div></div>`}).join('');
+  const w=ks.includes('bad')?'bad':ks.includes('ok')?'ok':'na';
+  return`<div class="card mc s-${w}" tabindex="0" data-g="${s}"><div class="mh"><b>${s}</b><span>${CFG[s].d}</span></div>${rows}<div class="mf">${when?'ข้อมูลล่าสุด '+when:'ยังไม่มีข้อมูล'} · ${vname(pe)}</div></div>`}).join('');
+ const tot=cnt.ok+cnt.bad,G={ok:'✓',bad:'✕',na:'–'},N={ok:'ผ่านเป้า',bad:'ไม่ผ่านเป้า',na:'ไม่มีเป้า'};
+ const mat=`<div class="mw"><div class="mg"><span></span>${SHEETS.map(s=>`<span class="mh2">${s}</span>`).join('')}${PL().map(p=>`<span class="ml p-${p}"><em class="pc">${p}</em></span>`+SHEETS.map(s=>{const c=cell[s+p],l=c.l,pc=CFG[s].u==='%'?'%':'';
+   return`<button class="mx ${c.k}" data-g="${s}" title="${s} ${pn(s,p)}: ${l?f(l.a)+pc:'ไม่มีข้อมูล'}${l&&HT(s,l.t)?' (เป้า '+f(l.t)+pc+')':''} · ${N[c.k]}"><b>${G[c.k]}</b><small>${l?sh(l.a)+pc:'&nbsp;'}</small></button>`}).join('')).join('')}</div></div>`;
+ watch.sort((a,b)=>b.g-a.g);
+ const wl=watch.length?`<div class="wl">${watch.slice(0,4).map(w=>{const u=CFG[w.s].u,pc=u==='%'?'%':' '+u;return`<button class="wi" data-g="${w.s}"><span class="p-${w.p}">${w.s} <em class="pc">${pn(w.s,w.p)}</em></span><small>${CFG[w.s].hi?'ต่ำกว่าเป้า':'เกินเป้า'} ${f(Math.abs(w.l.a-w.l.t))}${pc}</small></button>`}).join('')}</div>${watch.length>4?`<p class="hsub">และอีก ${watch.length-4} รายการ ดูได้จากตารางสถานะ</p>`:''}`
+  :`<div class="allok">${tot?'ตัวชี้วัดที่มีเป้าหมายผ่านเป้าทั้งหมด':'ยังไม่มีตัวชี้วัดที่เทียบกับเป้าได้ในช่วงที่เลือก'}</div>`;
+ $('#view').innerHTML=`<section class="hero"><div><h2><b>${cnt.ok}<small>/ ${tot}</small></b>ตัวชี้วัดผ่านเป้า ${S.year?'ปี '+(S.year+543):'ทุกปี'} (${vname(pe)})</h2>
+  <div class="hb" aria-hidden="true">${['ok','bad','na'].map(k=>cnt[k]?`<span class="${k}" style="flex:${cnt[k]}"></span>`:'').join('')}</div>
+  <div class="hg"><span><b>${cnt.ok}</b> ผ่าน</span><span><b>${cnt.bad}</b> ไม่ผ่าน</span><span><b>${cnt.na}</b> ไม่มีเป้า</span></div></div>
+  <div class="hm"><h3>สถานะรายตัวชี้วัด คลิกช่องเพื่อดูรายละเอียด</h3>${mat}</div>
+  <div><h3>${watch.length?'ต้องจับตา เรียงตามระยะห่างจากเป้า':'ต้องจับตา'}</h3>${wl}</div></section><div class="grid">${cards}</div>`;
+ document.querySelectorAll('[data-g]').forEach(c=>{c.onclick=()=>{S.tab=c.dataset.g;render()};if(c.tagName!=='BUTTON')c.onkeydown=e=>{if(e.key==='Enter')c.onclick()}});
 }
 function kpi(s,p,pe){const l=latest(s,p,pe),u=CFG[s].u,k=l?st(s,l.a,l.t):'na',d=l&&HT(s,l.t)?l.a-l.t:null;
- return`<div class="card kpi" style="--c:${COL[p]}"><div class="kt"><i></i>${pn(s,p)} · ${vname(pe)}<span>${l?kl(l.r):''}</span></div><div class="kv">${l?f(l.a):'–'}<small>${u}</small></div><div class="ks">${l&&HT(s,l.t)?'เป้า '+f(l.t)+' · ผลต่าง '+(d>0?'+':'')+f(d):'ไม่มีเป้าหมาย'}</div>${pill(k)}</div>`}
+ return`<div class="card kpi p-${p}" style="--c:${COL[p]}"><div class="kt"><em class="pc">${pn(s,p)}</em>${vname(pe)}<span>${l?kl(l.r):''}</span></div><div class="kv">${l?f(l.a):'–'}<small>${u}</small></div><div class="ks">${l&&HT(s,l.t)?'เป้า '+f(l.t)+' · ผลต่าง '+(d>0?'+':'')+f(d):'ไม่มีเป้าหมาย'}</div>${pill(k)}</div>`}
 function detail(s){
  const pe=S.view,u=CFG[s].u,ps=PL(),pm=PM(),ac=pm&&!S.year,rs=ac?perRows(s,ps,0):pm?rowsOf(s).filter(r=>r[1]<=pm):rowsOf(s),has=rs.some(r=>ps.some(p=>val(s,r,p,'ACTUAL',pe)!=null));
  let h='<div class="kpis">'+ps.map(p=>pm?kpi(s,p,'c'):kpi(s,p,'m')+kpi(s,p,'c')).join('')+'</div>';
@@ -206,8 +272,9 @@ function loadFile(fl){
  if(!fl)return;
  if(!/\.xlsx?$/i.test(fl.name))return toast('กรุณาเลือกไฟล์ Excel (.xlsx)',1);
  if(!window.XLSX)return toast('โหลดตัวอ่าน Excel ไม่สำเร็จ กรุณาเชื่อมต่ออินเทอร์เน็ตแล้วลองใหม่',1);
- const rd=new FileReader();rd.onerror=()=>toast('อ่านไฟล์ไม่สำเร็จ',1);rd.onload=ev=>{try{
-  const wb=XLSX.read(ev.target.result,{type:'array'}),nd=JSON.parse(JSON.stringify(D)),miss=[];let nof=0;
+ const rd=new FileReader();rd.onerror=()=>toast('อ่านไฟล์ไม่สำเร็จ',1);rd.onload=ev=>applyBuf(ev.target.result,fl.name,0);rd.readAsArrayBuffer(fl)}
+function applyBuf(buf,name,auto,upd){try{
+  const wb=XLSX.read(buf,{type:'array'}),nd=JSON.parse(JSON.stringify(D)),miss=[];let nof=0;
   SHEETS.forEach(s=>{const ws=findSheet(wb,n=>n.trim().toUpperCase()===s);if(!ws)return miss.push(s);
    Object.keys(ws).forEach(k=>{if(k[0]!=='!'){const c=ws[k];if(c&&c.f&&(c.v===undefined||c.v===null))nof++}});
    const a=XLSX.utils.sheet_to_json(ws,{header:1,defval:null,raw:true}),h=(a[0]||[]).map(x=>x==null?null:String(x).trim());while(h.length&&h[h.length-1]==null)h.pop();
@@ -215,10 +282,17 @@ function loadFile(fl){
    if(h.length>2&&r.length)nd.sheets[s]={h,r};else miss.push(s)});
   if(miss.length===SHEETS.length)throw new Error('ไม่พบชีต SH, SR, UOR, GWEAF, POH, UOH, MOH, FOH ตามรูปแบบ Template');
   const we=findSheet(wb,n=>/UOH/i.test(n)&&/ย้อนหลัง/.test(n)),evs=we?parseEv(we):[];if(evs.length)nd.events=evs;else miss.push('ข้อมูล UOH ย้อนหลัง');
-  D=nd;D.meta={file:fl.name,updated:new Date().toISOString()};IX={};
-  if(S.year&&!yrs().includes(S.year))S.year=0;setDirty(true);render();
-  toast('อัปเดตข้อมูลจาก '+fl.name+' แล้ว'+(miss.length?' (ไม่พบชีต: '+miss.join(', ')+')':'')+(nof?' · พบ '+nof+' เซลล์สูตรที่ไม่มีค่าที่คำนวณไว้ ให้เปิดไฟล์ใน Excel แล้วบันทึกก่อนอัปโหลด':'')+' · กด "บันทึกไฟล์" เพื่อเก็บค่าปัจจุบัน',!!nof);
- }catch(err){toast('อ่านไฟล์ไม่สำเร็จ: '+err.message,1)}};rd.readAsArrayBuffer(fl)}
+  D=nd;D.meta={file:name,updated:upd||new Date().toISOString()};IX={};
+  if(auto){const y=yrs().filter(y=>D.sheets.SH.r.some(r=>r[0]===y&&num(r[2])));S.year=y.length?y[y.length-1]:0}
+  else if(S.year&&!yrs().includes(S.year))S.year=0;
+  setDirty(!auto);render();
+  if(auto){if(miss.length||nof)toast('โหลดข้อมูลล่าสุดจาก '+name+' แล้ว'+(miss.length?' (ไม่พบชีต: '+miss.join(', ')+')':'')+(nof?' · พบ '+nof+' เซลล์สูตรที่ไม่มีค่าที่คำนวณไว้ ให้เปิดไฟล์ใน Excel แล้วบันทึกก่อนอัปโหลด':''),!!nof);return}
+  toast('อัปเดตข้อมูลจาก '+name+' แล้ว'+(miss.length?' (ไม่พบชีต: '+miss.join(', ')+')':'')+(nof?' · พบ '+nof+' เซลล์สูตรที่ไม่มีค่าที่คำนวณไว้ ให้เปิดไฟล์ใน Excel แล้วบันทึกก่อนอัปโหลด':'')+' · กด "บันทึกไฟล์" เพื่อเก็บค่าปัจจุบัน',!!nof);
+ }catch(err){toast((auto?'โหลด '+name+' อัตโนมัติไม่สำเร็จ แสดงข้อมูลชุดที่ฝังไว้แทน: ':'อ่านไฟล์ไม่สำเร็จ: ')+err.message,1)}}
+const AUTO=['Target ดัชนีตัวชี้วัด.xlsx','data.xlsx'];
+function autoLoad(i=0){if(i>=AUTO.length||!/^https?:$/.test(location.protocol)||!window.XLSX)return;const n=AUTO[i];
+ fetch(encodeURIComponent(n)+'?t='+Date.now(),{cache:'no-store'}).then(r=>{if(!r.ok)return autoLoad(i+1);const lm=r.headers.get('last-modified'),d=lm?new Date(lm):null;
+  return r.arrayBuffer().then(b=>applyBuf(b,n,1,d&&!isNaN(d)?d.toISOString():null))}).catch(()=>autoLoad(i+1))}
 $('#file').onchange=e=>{const fl=e.target.files[0];e.target.value='';loadFile(fl)};
 addEventListener('dragover',e=>{if(e.dataTransfer&&[...e.dataTransfer.types].includes('Files')){e.preventDefault();document.body.classList.add('drag')}});
 addEventListener('dragleave',e=>{if(!e.relatedTarget)document.body.classList.remove('drag')});
@@ -229,4 +303,5 @@ $('#sv').onclick=()=>{
  document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),4000);setDirty(false);toast('บันทึกไฟล์ dashboard_ติดตามตัวชี้วัด.html แล้ว');};
 onbeforeunload=e=>{if(dirty){e.preventDefault();e.returnValue=''}};
 (()=>{const y=yrs().filter(y=>D.sheets.SH.r.some(r=>r[0]===y&&num(r[2])));S.year=y.length?y[y.length-1]:0;render()})();
+autoLoad();
 </script></body></html>
